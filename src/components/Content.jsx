@@ -9,10 +9,10 @@ import styles from "../styles/content.module.css";
 
 export function Content() {
   const [repositories, setRepositories] = useState([]);
-  const [nome, setNome] = useState("");
+  const [name, setName] = useState("");
   const [minibio, setminibio] = useState("");
-  const [citacao, setCitacao] = useState("");
-  const [imagem, setImagem] = useState("");
+  const [quote, setQuote] = useState("");
+  const [image, setImage] = useState("");
   const [success, setSuccess] = useState(false);
   const baseURL = "https://back-end-i7ti.onrender.com/women";
 
@@ -24,20 +24,20 @@ export function Content() {
     getData();
   }, []);
 
-  function handleInputValueNome(event) {
-    setNome(event.target.value);
+  function handleInputValueName(event) {
+    setName(event.target.value);
   }
 
-  function handleInputValueminibio(event) {
+  function handleInputValueMinibio(event) {
     setminibio(event.target.value);
   }
 
-  function handleInputValueImagem(event) {
-    setImagem(event.target.value);
+  function handleInputValueImage(event) {
+    setImage(event.target.value);
   }
 
-  function handleInputValueCitacao(event) {
-    setCitacao(event.target.value);
+  function handleInputValueQuote(event) {
+    setQuote(event.target.value);
   }
 
   function handleCreateMessage(event) {
@@ -47,10 +47,10 @@ export function Content() {
 
     async function sendData() {
       await Axios.post(baseURL, {
-        nome: nome,
-        citacao: citacao,
+        name: name,
+        quote: quote,
         minibio: minibio,
-        imagem: imagem,
+        image: image,
       });
       const response = await Axios.get(baseURL);
       setRepositories(response.data);
@@ -58,10 +58,10 @@ export function Content() {
     sendData();
 
     setSuccess(true);
-    setNome("");
-    setminibio("");
-    setImagem("");
-    setCitacao("");
+    setName("");
+    setMinibio("");
+    setImage("");
+    setQuote("");
   }
 
   return (
@@ -97,25 +97,25 @@ export function Content() {
         <h2 className={styles.projectsTitle}>Cadastre uma rainha tech:</h2>
         <form className={styles.form} onSubmit={handleCreateMessage}>
           <input
-            onChange={handleInputValueNome}
+            onChange={handleInputValueName}
             placeholder="Digite o nome"
             value={nome}
             className={styles.formInput}
           />
           <textarea
-            onChange={handleInputValueImagem}
+            onChange={handleInputValueImage}
             placeholder="Digite o link da imagem"
             value={imagem}
             className={styles.formTextArea}
           />
           <textarea
-            onChange={handleInputValueminibio}
+            onChange={handleInputValueMinibio}
             placeholder="Digite a minibiografia"
             value={minibio}
             className={styles.formTextArea}
           />
           <textarea
-            onChange={handleInputValueCitacao}
+            onChange={handleInputValueQuote}
             placeholder="Digite a citação"
             value={citacao}
             className={styles.formTextArea}
